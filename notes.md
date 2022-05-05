@@ -26,6 +26,9 @@
 
      Use && to make a ternary without else 
 
+
+     useEffect - side effect; something to happen like when a page loads
+
 # Build for Production 
 
     npm run build
@@ -35,4 +38,13 @@
         sudo npm i -g serve         this will install globally
         serve -s build -p 8000      made up port 
     ctrl + c to stop 
-    
+
+
+    install locally
+    npm i json-server
+    configured package.json
+    npm run server                  created a db.json
+
+# JSON
+
+    MUST BE IN " " and no trailing commas
