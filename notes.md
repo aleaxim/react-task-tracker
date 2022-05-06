@@ -48,3 +48,7 @@
 # JSON
 
     MUST BE IN " " and no trailing commas
+
+# React Router
+
+    npm i react-router-dom

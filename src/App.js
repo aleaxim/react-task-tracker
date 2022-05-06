@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
+import Footer from './components/Footer'
+import About from './components/About'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 
 
 
@@ -84,7 +87,7 @@ const App = () => {
     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-type' : "application/json"
+        'Content-type' : 'application/json'
       },
       body: JSON.stringify(updateTask)
     })
@@ -102,21 +105,34 @@ const App = () => {
 
 
   return (
-    <div className="container">
-      <Header 
-      onAdd={() => setShowAddTask(!showAddTask)} 
-      showAdd={showAddTask}
-      />
+    <Router>
+      <div className="container">
+        <Header 
+          onAdd={() => setShowAddTask(!showAddTask)} 
+          showAdd={showAddTask}
+        />
 
-      {/* Toggle of Add Task */}
-      {showAddTask && <AddTask onAdd={addTask} />}
+        <Routes>
+          <Route 
+            path='/' exact 
+            element={
+              <>
+                {/* Toggle of Add Task */}
+                {showAddTask && <AddTask onAdd={addTask} />}
 
-      {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
-      ) : (
-        'You have no tasks'
-      )}
-    </div>
+                {tasks.length > 0 ? (
+                  <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>
+                ) : (
+                  'You have no tasks'
+                )}
+              </>
+            } 
+          />
+          <Route path='/about' element={<About />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   )
 }
 
